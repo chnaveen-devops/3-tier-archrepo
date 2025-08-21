@@ -1,10 +1,11 @@
-# Create an S3 Bucket
 resource "aws_s3_bucket" "example_bucket" {
-  bucket = "swiggy-bucket-terraform-3tierarch"
-
-  # Enable versioning
-  versioning {
-    enabled = true
-  }
+  bucket = "my-demo-bucket"
 }
 
+resource "aws_s3_bucket_versioning" "example_bucket_versioning" {
+  bucket = aws_s3_bucket.example_bucket.id
+
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
